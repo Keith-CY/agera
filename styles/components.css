@@ -36,3 +36,13 @@
     @apply text-sm text-dark-grey capitalize;
   }
 }
+
+@layer components {
+  .tx-type-badge {
+    @apply flex justify-center items-center capitalize font-bold text-tag-primary bg-tag-secondary border border-tag-primary;
+    border-radius: 4px;
+    font-size: 10px;
+    padding: 0 4px;
+    height: 17px;
+  }
+}

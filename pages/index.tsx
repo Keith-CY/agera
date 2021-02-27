@@ -81,11 +81,7 @@ const TxList = ({ list }: { list: State['txList'] }) => {
                   #<a title={t('hash')}>{tx.hash}</a>
                 </span>
               </Link>
-              <span
-                className="capitalize text-tag-primary bg-tag-secondary border border-tag-primary mx-2 "
-                style={{ borderRadius: 4, fontSize: 10, padding: '2.5px 4px' }}
-                title={t('action')}
-              >
+              <span className="tx-type-badge mx-2" title={t('action')}>
                 {tx.action}
               </span>
               <span title={t('success')}>{tx.success.toString()}</span>

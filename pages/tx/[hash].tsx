@@ -15,7 +15,7 @@ const Tx = (initState: State) => {
         label: 'l2Block',
         value: (
           <Link href={`/block/${tx.l2Block}`}>
-            <a>{tx.l2Block}</a>
+            <a title={t('l2Block')}>{tx.l2Block}</a>
           </Link>
         ),
       },
@@ -23,18 +23,25 @@ const Tx = (initState: State) => {
         label: 'l1Block',
         value: (
           <Link href={`${ckbExplorerUrl}/block/${tx.l1Block}`}>
-            <a>{tx.l1Block}</a>
+            <a title={t('l1Block')}>{tx.l1Block}</a>
           </Link>
         ),
       },
-      { label: 'type', value: tx.type },
-      { label: 'finalizeState', value: tx.finalizeState },
+      {
+        label: 'type',
+        value: (
+          <span className="tx-type-badge" title={t('type')}>
+            {tx.type}
+          </span>
+        ),
+      },
+      { label: 'finalizeState', value: <span title={t('finalizeState')}>{tx.finalizeState}</span> },
     ],
     [
-      { label: 'nonce', value: tx.nonce },
-      { label: 'args', value: tx.args },
-      { label: 'gasPrice', value: tx.gasPrice },
-      { label: 'fee', value: tx.fee },
+      { label: 'nonce', value: <span title={t('nonce')}>{tx.nonce}</span> },
+      { label: 'args', value: <span title={t('args')}>{tx.args}</span> },
+      { label: 'gasPrice', value: <span title={t('gasPrice')}>{tx.gasPrice}</span> },
+      { label: 'fee', value: <span title={t('fee')}>{tx.fee}</span> },
     ],
   ]
   return (
@@ -55,7 +62,7 @@ const Tx = (initState: State) => {
           </Link>
         </span>
       </div>
-      <CardFieldsetList fieldsetList={fieldsetList} t={t}/>
+      <CardFieldsetList fieldsetList={fieldsetList} t={t} />
     </div>
   )
 }
