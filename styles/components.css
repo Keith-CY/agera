@@ -1,22 +1,19 @@
 @layer components {
-  .basic-table {
-    @apply table-auto w-full;
-    & thead {
-      & tr {
-        @apply bg-gray-300;
-      }
-      & th {
-        @apply text-left p-4;
-      }
-    }
-    & tbody {
-      & tr {
-        @apply even:bg-gray-100 hover:bg-gray-200;
-      }
-      & td {
-        @apply p-4;
-      }
-    }
+  .main-container {
+    /* @apply flex mx-auto w-full max-w-full md:max-w-2xl xl:max-w-5xl; */
+    @apply flex flex-col mx-auto w-full p-4 xl:max-w-7xl;
+  }
+}
+
+@layer components {
+  .list-container {
+    @apply bg-white rounded-md shadow-md;
+  }
+  .list-header {
+    @apply text-sm font-bold;
+  }
+  .list-datetime {
+    @apply text-xs text-plain-grey;
   }
 }
 

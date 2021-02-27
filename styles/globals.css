@@ -6,13 +6,17 @@
   --header-height: 69px;
 }
 
+html,
+body {
+  background-color: #ededed;
+}
 main {
-  @apply max-w-7xl m-auto mb-0;
+  @apply main-container;
 }
 * {
   @apply tracking-wide box-border outline-none cursor-default;
 }
 
 a {
-  @apply underline cursor-pointer;
+  @apply no-underline cursor-pointer text-primary;
 }
