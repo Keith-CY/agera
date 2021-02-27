@@ -12,6 +12,7 @@ body {
 }
 main {
   @apply main-container;
+  min-height: calc(100vh - 212px);
 }
 * {
   @apply tracking-wide box-border outline-none cursor-default;

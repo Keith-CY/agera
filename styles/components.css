@@ -1,6 +1,5 @@
 @layer components {
   .main-container {
-    /* @apply flex mx-auto w-full max-w-full md:max-w-2xl xl:max-w-5xl; */
     @apply flex flex-col mx-auto w-full p-4 xl:max-w-7xl;
   }
 }
@@ -13,24 +12,27 @@
     @apply text-sm font-bold;
   }
   .list-datetime {
-    @apply text-xs text-plain-grey;
+    @apply text-xs text-dark-grey;
   }
 }
 
 @layer components {
-  .basic-info-list {
-    @apply table w-full py-5 text-sm;
-    & > div {
-      @apply table-row-group space-y-0.5 hover:bg-gray-100;
-      & > span {
-        @apply table-cell font-semibold px-4 py-2 text-gray-900;
-        &:after {
-          content: ':';
-        }
-      }
-      & > div {
-        @apply table-cell px-4 py-2 text-gray-700;
-      }
+  .card-container {
+    @apply bg-white rounded-md shadow-md p-4 mt-4 pb-1;
+  }
+  .card-header {
+    @apply text-xl font-bold;
+  }
+  .card-fieldset {
+    @apply md:w-1/2 md:odd:pr-4 md:even:pl-4;
+  }
+  .card-field {
+    @apply flex py-2 justify-between items-center border-b border-dashed border-light-grey text-sm md:border-0 md:first:pt-0 md:last:pb-0;
+    &[attr-last='true'] {
+      @apply last:border-0;
     }
+  }
+  .card-label {
+    @apply text-sm text-dark-grey capitalize;
   }
 }
