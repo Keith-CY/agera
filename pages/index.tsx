@@ -124,15 +124,15 @@ const TxList = ({ list }: { list: State['txList'] }) => {
               </span>
               {tx.success ? SuccessIcon : FailureIcon}
             </div>
-            <div className="flex capitalize">
+            <div className="flex items-center capitalize">
               {t('from')}
               <Link href={`/account/${tx.from}`}>
-                <a title={t('from')} className="mx-0.5">
+                <a title={t('from')} className="ml-0.5 mr-1">
                   {tx.from}
                 </a>
               </Link>
               <Image src={`${imgUrl}arrow-down-rounded.svg`} width="14" height="14" className="transform -rotate-90" />
-              <span className="mx-0.5">{t('to')}</span>
+              <span className="ml-1 mr-0.5">{t('to')}</span>
               <Link href={`/account/${tx.to}`}>
                 <a title={t('to')} className="mx-0.5">
                   {tx.to}
