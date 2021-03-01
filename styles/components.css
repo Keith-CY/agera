@@ -54,7 +54,7 @@
     }
   }
   .card-label {
-    @apply flex items-center text-sm text-dark-grey capitalize whitespace-nowrap mr-2 flex-shrink-0 select-none;
+    @apply flex items-center text-sm text-dark-grey capitalize whitespace-nowrap mr-2 flex-shrink-0 select-none ;
   }
 }
 
