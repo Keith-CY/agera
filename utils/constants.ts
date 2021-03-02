@@ -5,4 +5,4 @@ export const nervinaWebsiteUrl = process.env.NEXT_PUBLIC_NERVINA_WEBSITE_URL
 export const nervinaGitHubUrl = process.env.NEXT_PUBLIC_NERVINA_GITHUB_URL
 export const nervosFoundationUrl = process.env.NEXT_PUBLIC_NERVOS_FOUNDATION_URL
 
-export const imgUrl = '/static/icons/'
+export const imgUrl = '/icons/'
