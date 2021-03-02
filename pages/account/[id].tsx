@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
-import { useTranslation, fetchAccount, API, handleApiError } from 'utils'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { fetchAccount, API, handleApiError } from 'utils'
 import User from 'components/User'
 import MetaContract from 'components/MetaContract'
 import SmartContract from 'components/SmartContract'
@@ -41,11 +43,12 @@ const Account = (initState: State) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<State, { id: string }> = async ({ res, params }) => {
+export const getServerSideProps: GetServerSideProps<State, { id: string }> = async ({ locale, res, params }) => {
   const { id } = params
   try {
     const account = await fetchAccount(id)
-    return { props: account }
+    const lng = await serverSideTranslations(locale, ['account'])
+    return { props: { ...account, ...lng } }
   } catch (err) {
     return handleApiError(err, res)
   }

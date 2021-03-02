@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTranslation, formatDatetime, fetchTx, API, handleApiError, ckbExplorerUrl, imgUrl } from 'utils'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { formatDatetime, fetchTx, API, handleApiError, ckbExplorerUrl, imgUrl } from 'utils'
 import CardFieldsetList from 'components/CardFieldsetList'
 type State = API.Tx.Parsed
 
@@ -71,11 +73,12 @@ const Tx = (initState: State) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<State, { hash: string }> = async ({ res, params }) => {
+export const getServerSideProps: GetServerSideProps<State, { hash: string }> = async ({ locale, res, params }) => {
   const { hash } = params
   try {
     const tx = await fetchTx(hash)
-    return { props: tx }
+    const lng = await serverSideTranslations(locale, ['tx'])
+    return { props: { ...tx, ...lng } }
   } catch (err) {
     return handleApiError(err, res)
   }

@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { fetchTxList, API, handleApiError, useTranslation, timeDistance, imgUrl } from 'utils'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { fetchTxList, API, handleApiError, timeDistance, imgUrl } from 'utils'
 
 type State = { query: Record<string, string>; txList: API.Txs.Parsed }
 
@@ -68,7 +70,6 @@ const List = ({ list }: { list: State['txList'] }) => {
 const TxList = (initState: State) => {
   const [{ query, txList }, setTxList] = useState(initState)
   const [t] = useTranslation('tx')
-  console.log(query)
   return (
     <div>
       <h2 className="text-base leading-default font-bold mt-8 mb-2">
@@ -82,11 +83,12 @@ const TxList = (initState: State) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps<State> = async ({ res, query }) => {
+export const getServerSideProps: GetServerSideProps<State> = async ({ locale, res, query }) => {
   try {
     const q = new URLSearchParams(query as Record<string, string>)
     const txList = await fetchTxList(`${q}`)
-    return { props: { query: query as Record<string, string>, txList } }
+    const lng = await serverSideTranslations(locale, ['tx'])
+    return { props: { query: query as Record<string, string>, txList, ...lng } }
   } catch (err) {
     return handleApiError(err, res)
   }
