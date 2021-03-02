@@ -73,7 +73,7 @@
 
 @layer components {
   .script-code {
-    @apply flex w-full text-dark-grey bg-code-bg font-bold text-xs p-1;
+    @apply flex w-full text-dark-grey bg-code-bg font-bold text-xs p-1 ;
   }
 }
 
