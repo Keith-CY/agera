@@ -46,12 +46,12 @@ const Tx = (initState: State) => {
     ],
   ]
   return (
-    <div className="card-container">
+    <div className="card-container mt-8">
       <h2 className="card-header">
         {`${t('hash')}`}
         <span>{`#${tx.hash}`}</span>
       </h2>
-      <div className="flex justify-center items-center border-b py-3 capitalize">
+      <div className="flex justify-center items-center border-b border-light-grey py-3 capitalize">
         <span className="flex-1 mr-2 overflow-hidden overflow-ellipsis text-right">
           {t('from')}
           <Link href={`/account/${tx.from}`}>

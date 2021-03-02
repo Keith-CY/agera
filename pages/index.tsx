@@ -36,7 +36,7 @@ const Statistic = (statistic: State['statistic']) => {
               key={field.key}
               className="flex-1 whitespace-pre capitalize text-sm even:pl-4 md:even:pl-0 md:odd:pb-4 md:even:pt-4 xl:odd:pb-0 xl:even:p-0 xl:odd:pl-4 xl:even:pl-4"
             >
-              <div className="flex items-center leading-4">
+              <div className="flex items-center leading-default">
                 <Image
                   loading="lazy"
                   className="inverted-icon"
@@ -72,7 +72,7 @@ const BlockList = ({ list }: { list: State['blockList'] }) => {
         />
         <span>{t('latestBlocks')}</span>
       </h2>
-      <div className="divide-y">
+      <div className="divide-y divide-light-grey">
         {list.map(block => (
           <div key={block.hash} className="list-item-container">
             <div className="flex justify-between mb-4 md:mb-3">
@@ -110,7 +110,7 @@ const TxList = ({ list }: { list: State['txList'] }) => {
         <Image loading="lazy" src={`${imgUrl}txs.svg`} height="17" width="17" layout="fixed" alt={t('latestBlocks')} />
         <span>{t('latestTxs')}</span>
       </h2>
-      <div className="divide-y">
+      <div className="divide-y divide-light-grey">
         {list.map(tx => (
           <div key={tx.hash} className="list-item-container">
             <div className="flex items-center mb-3">

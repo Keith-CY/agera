@@ -14,7 +14,7 @@ const Account = (initState: State) => {
   const [t] = useTranslation('account')
   return (
     <>
-      <div className="flex flex-col card-container md:flex-row md:pb-3">
+      <div className="flex flex-col card-container mt-8 md:flex-row md:pb-3">
         <h2 className="card-header md:flex-1 md:border-b-0 md:border-r md:pb-0">
           {`${t('account')}`}
           <span>{account.id}</span>

@@ -72,13 +72,13 @@ export namespace API {
     export interface Raw {
       page: string
       total_count: string
-      txs: Array<Record<'hash' | 'l2_block' | 'from' | 'to' | 'timestamp' | 'type', string>>
+      txs: Array<Record<'hash' | 'block_number' | 'block_hash' | 'from' | 'to' | 'timestamp' | 'action', string> & { success: boolean }>
     }
 
     export interface Parsed {
       page: string
       totalCount: string
-      txs: Array<Record<'hash' | 'l2Block' | 'from' | 'to' | 'timestamp' | 'type', string>>
+      txs: Array<Record<'hash' | 'blockNumber' | 'blockHash' | 'from' | 'to' | 'timestamp' | 'action', string> & { success: boolean }>
     }
   }
 }
@@ -161,23 +161,43 @@ export const fetchAccount = (id: string): Promise<API.Account.Parsed> =>
   })
 
 export const fetchTxList = (query: string): Promise<API.Txs.Parsed> =>
-  fetch(`${serverUrl}/txs?${query}`).then(async res => {
-    if (res.status === HttpStatus.NotFound) {
-      throw new NotFoundException()
-    }
+  fetch(`${serverUrl}/txs?${query}`)
+    .then(async res => {
+      if (res.status === HttpStatus.NotFound) {
+        throw new NotFoundException()
+      }
 
-    const txsRes: API.Txs.Raw = await res.json()
+      const txsRes: API.Txs.Raw = await res.json()
 
-    return {
-      page: txsRes.page,
-      totalCount: txsRes.total_count,
-      txs: txsRes.txs.map(tx => ({
-        hash: tx.hash,
-        l2Block: tx.l2_block,
-        from: tx.from,
-        to: tx.to,
-        timestamp: tx.timestamp,
-        type: tx.type,
-      })),
-    }
-  })
+      return {
+        page: txsRes.page,
+        totalCount: txsRes.total_count,
+        txs: txsRes.txs.map(tx => ({
+          hash: tx.hash,
+          blockNumber: tx.block_number,
+          blockHash: tx.block_hash,
+          from: tx.from,
+          to: tx.to,
+          timestamp: tx.timestamp,
+          action: tx.action,
+          success: tx.success,
+        })),
+      }
+    })
+    .catch(() => {
+      // mock data
+      return {
+        page: '1',
+        totalCount: '200',
+        txs: Array.from({ length: 10 }).map((_, idx) => ({
+          hash: 'hash' + idx,
+          blockNumber: 'block_number' + idx,
+          blockHash: 'block_hash' + idx,
+          from: 'from' + idx,
+          to: 'to' + idx,
+          timestamp: Date.now().toString(),
+          action: 'withdraw',
+          success: true,
+        })),
+      }
+    })

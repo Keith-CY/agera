@@ -9,13 +9,13 @@
     @apply bg-white rounded-md shadow-md;
   }
   .list-header {
-    @apply flex items-center text-sm font-bold capitalize text-ink px-4 py-1.5 border-b;
+    @apply flex items-center text-sm font-bold capitalize text-ink px-4 py-1.5 border-b border-light-grey;
     & > span {
       @apply ml-1;
     }
   }
   .list-item-container {
-    @apply mx-4 py-5 text-sm leading-4;
+    @apply mx-4 py-5 text-sm leading-default;
   }
   .list-datetime {
     @apply text-xs text-dark-grey;
@@ -27,13 +27,13 @@
     @apply bg-white rounded-md shadow-md p-4 mt-4 pb-1;
   }
   .card-header {
-    @apply text-xl leading-6 font-bold capitalize border-b pb-2.5;
+    @apply text-xl leading-default font-bold capitalize border-b border-light-grey pb-2.5;
     & > span {
       @apply font-light ml-2;
     }
   }
   .card-subheader {
-    @apply font-bold text-base text-dark-grey border-b pb-3 capitalize;
+    @apply font-bold text-base text-dark-grey border-b border-light-grey pb-3 capitalize;
     & span {
       @apply font-normal text-black ml-2;
     }
