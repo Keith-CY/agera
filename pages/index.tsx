@@ -165,7 +165,7 @@ const Home = (initState: State) => {
   const [home, setHome] = useState(initState)
   return (
     <>
-      <div className="py-8">
+      <div className="py-8 flex justify-center">
         <Search />
       </div>
 

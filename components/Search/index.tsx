@@ -1,29 +1,26 @@
-import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { imgUrl } from 'utils'
+import styles from './search.module.css'
 
 const Search = () => {
-  const [keyword, setKeyword] = useState('')
-  const [result, setResult] = useState<any | null>(null)
-  useEffect(() => {
-    if (keyword === 'keyword') {
-      setResult('Result of keyword')
-    } else {
-      setResult(null)
-    }
-  }, [keyword, setResult])
-  const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => setKeyword(e.currentTarget.value)
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
+    e.stopPropagation()
+    const keyword = e.currentTarget['search']?.value
+    console.log(keyword)
   }
   return (
-    <form className="flex w-full relative" onSubmit={handleSubmit}>
+    <form className={styles.container} onSubmit={handleSubmit}>
+      <div className={styles.icon}>
+      <Image src={`${imgUrl}search.svg`} width="18" height="18" loading="lazy" layout="fixed" title="search" />
+      </div>
       <input
+        id="search"
         type="text"
         placeholder="Search block, transaction, account..."
-        value={keyword}
-        onChange={handleChange}
         autoFocus
-        className="flex-1 text-sm px-2 focus:ring-2 rounded-md"
       />
+      <button type="submit" >Search</button>
     </form>
   )
 }
